@@ -1,0 +1,13 @@
+{cal_AGE2 : age,
+cal_DIPL : diplome,
+cal_SEXE : sexe :
+insee_TUU2014 : living_place,
+B_ea19_PCS31 : csp,
+csoc_Q77_1 : close_fam,
+csoc_Q77_2 : close_friends,
+csoc_Q77_3 : close_neighbors,
+csoc_Q77_4 : close_colleagues,
+csoc_Q78_1 : knows_fam,
+csoc_Q78_2 : knows_friends,
+csoc_Q78_3 : knows_neighbors,
+csoc_Q78_4 : knows_colleagues}
