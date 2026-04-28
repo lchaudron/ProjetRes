@@ -49,15 +49,17 @@ pg_min = prestige_accessible.min(axis=1)
 # Si pg_diversity > 1, on fait Max - Min, sinon 0
 capsoc['pg_range'] = (pg_max - pg_min).fillna(0)
 
-# 3. Réorganisation des colonnes
+# 3. Réorganisation des colonnes (équivalent du select everything)
 cols_to_front = ['pg_diversity', 'pg_upper', 'pg_range']
 other_cols = [c for c in capsoc.columns if c not in cols_to_front]
 capsoc = capsoc[cols_to_front + other_cols]
 
 
 ## Résultats 
+# On crée une colonne vide
 capsoc['habitat_cat'] = np.nan
 
+# On remplit selon tes masques existants
 for name, mask in masks.items():
     capsoc.loc[mask, 'habitat_cat'] = name
 
@@ -74,7 +76,7 @@ sns.scatterplot(x='habitat_cat', y='pg_diversity', data=df_means, s=200, color='
 
 plt.ylim(4.5, 7)
 
-plt.title('Social capital diversity')
+plt.title('Social')
 plt.ylabel('Moyenne (Diversity)')
 plt.xlabel('')
 plt.grid(axis='y', linestyle=':', alpha=0.5)

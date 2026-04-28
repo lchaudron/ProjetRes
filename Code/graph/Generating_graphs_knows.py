@@ -55,15 +55,15 @@ for title, mask in masks.items():
     ax.bar(br4, col, color='y', width=barWidth, edgecolor='grey', label='Colleagues')
     
     # Mise en forme
-    ax.set_xlabel(f'Close network ({title})', fontweight='bold', fontsize=12)
+    ax.set_xlabel(f'Total network ({title})', fontweight='bold', fontsize=12)
     ax.set_ylabel('Total Weight (Population Estimate)', fontweight='bold')
     ax.set_xticks([r + 1.5 * barWidth for r in range(len(fam))])
     ax.set_xticklabels(['None', '1', '2-5', '6-10', '11-20', '21-50', '50+'])
     
-    ax.set_title(f'Social Capital Distribution: {title}', fontsize=15)
+    ax.set_title(f'Total Social Network Distribution: {title}', fontsize=15)
     ax.legend()
     
     plt.tight_layout()
     #plt.show()
 
-    plt.savefig(f'outputs/histograms_knows/social_capital_{title.lower().replace(" ", "_")}.png')
+    plt.savefig(f'outputs/histograms_knows/total_social_capital_{title.lower().replace(" ", "_")}.png')

@@ -59,7 +59,7 @@ for title, mask in masks.items():
     ax.set_xticks([r + 1.5 * barWidth for r in range(len(fam))])
     ax.set_xticklabels(['None', '1', '2-5', '6-10', '11-20', '21-50', '50+'])
     
-    ax.set_title(f'Social Capital Distribution: {title}', fontsize=15)
+    ax.set_title(f'Close Social Network Distribution: {title}', fontsize=15)
     ax.legend()
     
     plt.tight_layout()
