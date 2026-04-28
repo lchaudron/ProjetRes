@@ -36,8 +36,30 @@ has_link = capsoc[professions].isin([1, 2, 3])
 capsoc['pg_diversity'] = has_link.sum(axis=1)
 
 # B. Upper Reachability : Somme pour les colonnes spécifiques (02, 05, 06)
-upper_cols = ["csoc_Q01_02", "csoc_Q01_05", "csoc_Q01_06"]
-capsoc['pg_upper'] = capsoc[upper_cols].isin([1, 2, 3]).sum(axis=1)
+prestige_scores = {
+    "csoc_Q01_02": 10, # Cadre
+    "csoc_Q01_06": 10, # Avocat
+    "csoc_Q01_05": 8,  # RH
+    "csoc_Q01_10": 7,  # Enseignant
+    "csoc_Q01_08": 6,  # Infirmier
+    "csoc_Q01_09": 5,  # Policier
+    "csoc_Q01_07": 4,  # Mécanicien
+    "csoc_Q01_04": 4,  # Coiffeur
+    "csoc_Q01_01": 3,  # Chauffeur
+    "csoc_Q01_03": 2,  # Agent d'entretien
+    "csoc_Q01_10": 5   # Assistant social (estimation)
+}
+
+# On crée des colonnes temporaires pour chaque score
+temp_cols = []
+for col, score in prestige_scores.items():
+    temp_col_name = f"val_{col}"
+    # Si le répondant connaît (1), il reçoit le score, sinon 0
+    capsoc[temp_col_name] = np.where(capsoc[col] == 1, score, 0)
+    temp_cols.append(temp_col_name)
+
+# LA VARIABLE FINALE : Le maximum atteint parmi toutes les connaissances
+capsoc['pg_upper'] = capsoc[temp_cols].max(axis=1)
 
 # C. Range (Max - Min)
 # On remplace les False par NaN pour que min/max ne prennent en compte que les liens réels
@@ -76,8 +98,8 @@ sns.scatterplot(x='habitat_cat', y='pg_diversity', data=df_means, s=200, color='
 
 plt.ylim(4.5, 7)
 
-plt.title('Social')
-plt.ylabel('Moyenne (Diversity)')
+plt.title('Number of different types of professionals in social network')
+plt.ylabel('Mean (Diversity)')
 plt.xlabel('')
 plt.grid(axis='y', linestyle=':', alpha=0.5)
 
@@ -93,7 +115,6 @@ df_means_upper = df_means_upper.sort_values('habitat_cat')
 plt.figure(figsize=(8, 6))
 sns.scatterplot(x='habitat_cat', y='pg_upper', data=df_means_upper, s=200, color='darkred') # Rouge pour le prestige
 
-plt.ylim(0.5, 2.0) # Échelle adaptée au score max de 3
 
 plt.title('Upper Reachability by location type (mean)')
 plt.ylabel('Mean (Upper Reach)')

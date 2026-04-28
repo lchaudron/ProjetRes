@@ -67,3 +67,25 @@ for title, mask in masks.items():
     #plt.show()
 
     plt.savefig(f'outputs/histograms_knows/total_social_capital_{title.lower().replace(" ", "_")}.png')
+
+
+
+# On définit les nouvelles variables
+vars_knows = ['knows_fam', 'knows_friends', 'knows_neighbors', 'knows_colleagues']
+
+# On crée la colonne du total "connaissances"
+# Note : Vérifie si ces variables sont numériques (0, 1, 2...) ou catégorielles (1, 2, 3...)
+capsoc['total_knows_size'] = capsoc[vars_knows].sum(axis=1)
+
+print("Statistiques du réseau de connaissances (Mode/Médiane) :")
+print("-" * 55)
+
+for title, mask in masks.items():
+    subset = capsoc[mask]
+    if not subset.empty:
+        # Calcul du mode (valeur la plus fréquente)
+        mode_val = subset['total_knows_size'].mode()[0]
+        # Calcul de la médiane (valeur centrale)
+        median_val = subset['total_knows_size'].median()
+        
+        print(f"{title:12} | Mode : {mode_val:3.0f} | Médiane : {median_val:3.0f}")

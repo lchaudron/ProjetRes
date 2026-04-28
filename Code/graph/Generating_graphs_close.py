@@ -17,8 +17,9 @@ masks = {
 vars_to_plot = ['close_fam', 'close_friends', 'close_neighbors', 'close_colleagues']
 labels_network = ['Family', 'Friends', 'Neighbours', 'Colleagues']
 colors = ['r', 'g', 'b', 'y']
-# L'index cible (Catégories de 1 à 7)
+density_colors = {'Rural': '#fde725', 'Small Town': '#35b779', 'Mid Town': '#31688e', 'Metropolis': '#440154'}
 full_index = np.arange(1, 8) 
+
 
 # 2. Fonction pour traiter un subset et retourner les données prêtes pour le plot
 def get_plot_data(subset):
@@ -67,3 +68,4 @@ for title, mask in masks.items():
 
     plt.savefig(f'outputs/histograms_close/social_capital_{title.lower().replace(" ", "_")}.png')
     
+
