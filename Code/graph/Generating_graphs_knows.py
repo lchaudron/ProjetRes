@@ -7,12 +7,12 @@ file = 'Data/cleaned_data_no_na.csv'
 capsoc = pd.read_csv(file)
 
 masks = {
-    "Rural": capsoc['living_place'] == 1,
-    "Small Town": (capsoc['living_place'] >= 2) & (capsoc['living_place'] <= 3),
-    "Mid Town": capsoc['living_place'] == 4,
-    "Large City": (capsoc['living_place'] >= 5) & (capsoc['living_place'] <= 6),
+    "Rural": capsoc['living_place'] == 0,
+    "Small Town": (capsoc['living_place'] >= 1) & (capsoc['living_place'] <= 3),
+    "Mid Town": (capsoc['living_place'] >= 4) & (capsoc['living_place'] <= 6),
     "Metropolis": capsoc['living_place'] >= 7
 }
+
 
 # Liste des variables à analyser
 vars_to_plot = ['knows_fam', 'knows_friends', 'knows_neighbors', 'knows_colleagues']

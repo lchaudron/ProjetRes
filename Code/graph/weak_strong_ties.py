@@ -8,15 +8,15 @@ capsoc = pd.read_csv(file)
 
 # 2. Définition des masques et de l'ordre souhaité
 masks = {
-    "Rural": capsoc['living_place'] == 1,
-    "Small Town": (capsoc['living_place'] >= 2) & (capsoc['living_place'] <= 3),
-    "Mid Town": capsoc['living_place'] == 4,
-    "Large City": (capsoc['living_place'] >= 5) & (capsoc['living_place'] <= 6),
+    "Rural": capsoc['living_place'] == 0,
+    "Small Town": (capsoc['living_place'] >= 1) & (capsoc['living_place'] <= 3),
+    "Mid Town": (capsoc['living_place'] >= 4) & (capsoc['living_place'] <= 6),
     "Metropolis": capsoc['living_place'] >= 7
 }
 
+
 # Ordre spécifique demandé
-location_order = ["Large City", "Metropolis", "Mid Town", "Small Town", "Rural"]
+location_order = ["Metropolis", "Mid Town", "Small Town", "Rural"]
 
 mapping_fin_job = {1:'Close family', 2: 'Distant family', 3: 'Close friends',
                    4: 'Neighbors', 5: 'Colleagues', 6: 'Someone else',

@@ -9,7 +9,7 @@ capsoc = pd.read_csv(file)
 masks = {
     "Rural": capsoc['living_place'] == 0,
     "Small Town": (capsoc['living_place'] >= 1) & (capsoc['living_place'] <= 3),
-    "Mid Town": capsoc['living_place'] >= 4 & (capsoc['living_place'] <= 6),
+    "Mid Town": (capsoc['living_place'] >= 4) & (capsoc['living_place'] <= 6),
     "Metropolis": capsoc['living_place'] >= 7
 }
 
